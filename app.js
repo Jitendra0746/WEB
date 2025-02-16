@@ -1,15 +1,26 @@
 let patients = JSON.parse(localStorage.getItem('patients')) || [];
 let doctors = JSON.parse(localStorage.getItem('doctors')) || [];
-let appointments = JSON.parse(localStorage.getItem('appointments')) || [];
 
+// Check if user is already logged in
+window.onload = function() {
+    if (localStorage.getItem("isLoggedIn") === "true") {
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('mainContent').classList.remove('hidden');
+        loadTables();
+    }
+};
+
+// Save Data to Local Storage
 function saveData(key, data) {
     localStorage.setItem(key, JSON.stringify(data));
 }
 
+// Login Function
 function login() {
     let username = document.getElementById('username').value;
     let password = document.getElementById('password').value;
     if (username === 'admin' && password === 'admin123') {
+        localStorage.setItem("isLoggedIn", "true");
         document.getElementById('loginPage').classList.add('hidden');
         document.getElementById('mainContent').classList.remove('hidden');
         loadTables();
@@ -18,6 +29,13 @@ function login() {
     }
 }
 
+// Logout Function
+function logout() {
+    localStorage.removeItem("isLoggedIn");
+    location.reload();
+}
+
+// Add Patient
 function addPatient() {
     let name = document.getElementById('name').value;
     let age = document.getElementById('age').value;
@@ -31,6 +49,7 @@ function addPatient() {
     loadTables();
 }
 
+// Add Doctor
 function addDoctor() {
     let name = document.getElementById('doctorName').value;
     let specialization = document.getElementById('specialization').value;
@@ -43,49 +62,20 @@ function addDoctor() {
     loadTables();
 }
 
-function addAppointment() {
-    let patient = document.getElementById('appointmentPatient').value;
-    let doctor = document.getElementById('appointmentDoctor').value;
-    if (!patient || !doctor) {
-        alert("All fields are required!");
-        return;
-    }
-    appointments.push({ patient, doctor });
-    saveData('appointments', appointments);
-    loadTables();
-}
-
+// Load Tables
 function loadTables() {
-    let patientTable = document.getElementById('patientTable');
-    let doctorTable = document.getElementById('doctorTable');
-    let appointmentTable = document.getElementById('appointmentTable');
-
-    patientTable.innerHTML = '<tr><th>Name</th><th>Age</th><th>Disease</th></tr>';
+    document.getElementById('patientTable').innerHTML = `<tr><th>Name</th><th>Age</th><th>Disease</th></tr>`;
     patients.forEach(p => {
-        let row = patientTable.insertRow();
-        row.innerHTML = `<td>${p.name}</td><td>${p.age}</td><td>${p.disease}</td>`;
+        document.getElementById('patientTable').innerHTML += `<tr><td>${p.name}</td><td>${p.age}</td><td>${p.disease}</td></tr>`;
     });
 
-    doctorTable.innerHTML = '<tr><th>Name</th><th>Specialization</th></tr>';
+    document.getElementById('doctorTable').innerHTML = `<tr><th>Name</th><th>Specialization</th></tr>`;
     doctors.forEach(d => {
-        let row = doctorTable.insertRow();
-        row.innerHTML = `<td>${d.name}</td><td>${d.specialization}</td>`;
-    });
-
-    appointmentTable.innerHTML = '<tr><th>Patient</th><th>Doctor</th></tr>';
-    appointments.forEach(a => {
-        let row = appointmentTable.insertRow();
-        row.innerHTML = `<td>${a.patient}</td><td>${a.doctor}</td>`;
+        document.getElementById('doctorTable').innerHTML += `<tr><td>${d.name}</td><td>${d.specialization}</td></tr>`;
     });
 }
 
+// Generate Report
 function generateReport() {
-    let report = `
-        Patients: ${patients.length}
-        Doctors: ${doctors.length}
-        Appointments: ${appointments.length}
-    `;
-    document.getElementById('reportOutput').innerText = report;
+    document.getElementById('reportOutput').innerText = `Patients: ${patients.length}\nDoctors: ${doctors.length}`;
 }
-
-document.addEventListener("DOMContentLoaded", loadTables);

@@ -7,43 +7,44 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="loginPage" class="container">
-        <h2>Login</h2>
+
+    <!-- Login Page -->
+    <div id="loginPage" class="container login-box">
+        <h2>🔒 Admin Login</h2>
         <input type="text" id="username" placeholder="Enter Username">
         <input type="password" id="password" placeholder="Enter Password">
         <button onclick="login()">Login</button>
     </div>
 
+    <!-- Main Content (Hidden Initially) -->
     <div id="mainContent" class="container hidden">
-        <h2>Hospital Management System</h2>
+        <h1>🏥 Hospital Management System</h1>
+        <button onclick="logout()" class="logout-btn">🚪 Logout</button>
 
-        <h3>Patient Management</h3>
-        <input type="text" id="name" placeholder="Patient Name">
-        <input type="number" id="age" placeholder="Age">
-        <input type="text" id="disease" placeholder="Disease">
-        <button onclick="addPatient()">Add Patient</button>
-        <table id="patientTable">
-            <tr><th>Name</th><th>Age</th><th>Disease</th></tr>
-        </table>
+        <div class="grid">
+            <div class="card">
+                <h3>🧑‍⚕️ Patient Management</h3>
+                <input type="text" id="name" placeholder="Patient Name">
+                <input type="number" id="age" placeholder="Age">
+                <input type="text" id="disease" placeholder="Disease">
+                <button onclick="addPatient()">Add Patient</button>
+                <table id="patientTable">
+                    <tr><th>Name</th><th>Age</th><th>Disease</th></tr>
+                </table>
+            </div>
 
-        <h3>Doctor Management</h3>
-        <input type="text" id="doctorName" placeholder="Doctor Name">
-        <input type="text" id="specialization" placeholder="Specialization">
-        <button onclick="addDoctor()">Add Doctor</button>
-        <table id="doctorTable">
-            <tr><th>Name</th><th>Specialization</th></tr>
-        </table>
+            <div class="card">
+                <h3>👨‍⚕️ Doctor Management</h3>
+                <input type="text" id="doctorName" placeholder="Doctor Name">
+                <input type="text" id="specialization" placeholder="Specialization">
+                <button onclick="addDoctor()">Add Doctor</button>
+                <table id="doctorTable">
+                    <tr><th>Name</th><th>Specialization</th></tr>
+                </table>
+            </div>
+        </div>
 
-        <h3>Appointments</h3>
-        <input type="text" id="appointmentPatient" placeholder="Patient Name">
-        <input type="text" id="appointmentDoctor" placeholder="Doctor Name">
-        <button onclick="addAppointment()">Book Appointment</button>
-        <table id="appointmentTable">
-            <tr><th>Patient</th><th>Doctor</th></tr>
-        </table>
-
-        <h3>Reports</h3>
-        <button onclick="generateReport()">Generate Report</button>
+        <button class="report-btn" onclick="generateReport()">📊 Generate Report</button>
         <pre id="reportOutput"></pre>
     </div>
 
