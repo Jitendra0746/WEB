@@ -10,6 +10,17 @@ function saveData(key, data) {
     localStorage.setItem(key, JSON.stringify(data));
 }
 
+
+function login() {
+    let username = document.getElementById('username').value;
+    let password = document.getElementById('password').value;
+    if(username === 'admin' && password === 'admin123') {
+        document.getElementById('loginPage').classList.add('hidden');
+        document.getElementById('mainContent').classList.remove('hidden');
+    } else {
+        alert('Invalid Credentials!');
+    }
+}
 function addPatient() {
     let name = document.getElementById('name').value;
     let age = document.getElementById('age').value;
