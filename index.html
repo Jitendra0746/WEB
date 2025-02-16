@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital Management System</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Hospital Management System</h2>
+        
+        <h3>Patient Management</h3>
+        <input type="text" id="name" placeholder="Enter Patient Name">
+        <input type="number" id="age" placeholder="Enter Age">
+        <input type="text" id="disease" placeholder="Enter Disease">
+        <button onclick="addPatient()">Add Patient</button>
+        
+        <h3>Doctor Management</h3>
+        <input type="text" id="doctorName" placeholder="Enter Doctor Name">
+        <input type="text" id="specialization" placeholder="Enter Specialization">
+        <button onclick="addDoctor()">Add Doctor</button>
+        
+        <h3>Appointment Management</h3>
+        <input type="text" id="appointmentPatient" placeholder="Enter Patient Name">
+        <input type="text" id="appointmentDoctor" placeholder="Enter Doctor Name">
+        <button onclick="addAppointment()">Book Appointment</button>
+        
+        <h3>Billing & Payment</h3>
+        <input type="text" id="billingPatient" placeholder="Enter Patient Name">
+        <input type="number" id="amount" placeholder="Enter Amount">
+        <button onclick="addBill()">Generate Bill</button>
+        
+        <h3>Medicine & Pharmacy</h3>
+        <input type="text" id="medicineName" placeholder="Enter Medicine Name">
+        <input type="number" id="medicineStock" placeholder="Enter Stock">
+        <button onclick="addMedicine()">Add Medicine</button>
+        
+        <h3>Staff Management</h3>
+        <input type="text" id="staffName" placeholder="Enter Staff Name">
+        <input type="text" id="staffRole" placeholder="Enter Role">
+        <button onclick="addStaff()">Add Staff</button>
+        
+        <h3>Reports</h3>
+        <button onclick="generateReport()">Generate Report</button>
+        <pre id="reportOutput"></pre>
+    </div>
+
+    <script src="./app.js">    </script>
+</body>
+</html>
